@@ -1,0 +1,22 @@
+Output Status:
+
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Unique Paths.
+Memory Usage: 5.9 MB, less than 70.03% of C++ online submissions for Unique Paths.
+  
+  
+  class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        
+        int dp[m][n];
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                if(i == 0 || j == 0)
+                    dp[i][j] = 1;
+        for(int i = 1; i < m; i++)
+            for(int j = 1; j < n; j++)
+                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+        return dp[m-1][n-1];   
+        
+    }
+};
