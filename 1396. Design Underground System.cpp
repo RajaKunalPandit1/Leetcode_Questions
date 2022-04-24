@@ -1,0 +1,32 @@
+Output Status:
+
+Runtime: 144 ms, faster than 89.95% of C++ online submissions for Design Underground System.
+Memory Usage: 58.9 MB, less than 64.67% of C++ online submissions for Design Underground System.
+
+
+class UndergroundSystem {
+public:
+     unordered_map<int, pair<string, int>> checkins;
+    unordered_map<string, pair<int, int>> routes;
+    void checkIn(int id, string stationName, int t) {
+        checkins[id] = {stationName, t};
+    }
+    void checkOut(int id, string stationName, int t) {
+        auto [stn, start] = checkins[id];
+        checkins.erase(id);
+        string route = stn + "," + stationName;
+        routes[route].first++, routes[route].second += t - start;
+    }
+    double getAverageTime(string startStation, string endStation) {
+        auto& [count, sum] = routes[startStation + "," + endStation];
+        return (double)sum / count;
+    }
+};
+
+/**
+ * Your UndergroundSystem object will be instantiated and called as such:
+ * UndergroundSystem* obj = new UndergroundSystem();
+ * obj->checkIn(id,stationName,t);
+ * obj->checkOut(id,stationName,t);
+ * double param_3 = obj->getAverageTime(startStation,endStation);
+ */
