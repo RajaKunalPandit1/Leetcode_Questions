@@ -3,6 +3,7 @@ Output Status:
 Runtime: 183 ms, faster than 33.78% of C++ online submissions for Longest String Chain.
 Memory Usage: 13.2 MB, less than 74.21% of C++ online submissions for Longest String Chain.
 
+// Time : O(N^2 * length(string)) + O(NlogN) :: Aux_Space : O(N)
 
 class Solution {
 public:
