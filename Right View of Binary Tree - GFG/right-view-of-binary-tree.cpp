@@ -40,28 +40,41 @@ struct Node
 class Solution
 {
     public:
-    
-    void func(Node *root, int level, vector<int> &res){
-        
-        if(root == NULL) return;
-        
-        if(res.size() == level){
-            res.push_back(root->data);
-        }
-        
-        func(root->right,level+1,res);
-        func(root->left,level+1,res);
-        
-    }
-    
     //Function to return list containing elements of right view of binary tree.
     vector<int> rightView(Node *root)
     {
+        
+        
+        vector<int> res;
+        if(root == NULL) return res;
+        
+       queue<Node *> q;
+       q.push(root);
        
-       vector<int> res;
-       func(root,0,res);
+       while(!q.empty()){
+           
+           int n = q.size();
+           
+           for(int i=0;i<n;i++){
+               
+               Node *curr = q.front();
+               q.pop();
+               
+               if(i == n-1){
+                   res.push_back(curr->data);
+               }
+               
+               if(curr->left != NULL){
+                   q.push(curr->left);
+               }
+               
+               if(curr->right != NULL){
+                   q.push(curr->right);
+               }
+               
+           }
+       }
        return res;
-       
     }
 };
 
