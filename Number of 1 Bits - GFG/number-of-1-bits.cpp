@@ -11,10 +11,8 @@ class Solution {
         
         while(N!= 0){
             
-            if(N & 1 == 1){
-                res++;
-            }
-            N = N>>1;
+            N = (N&(N-1));
+            res++;
         }
         return res;
         
